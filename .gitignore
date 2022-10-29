@@ -86,3 +86,21 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+.DS_Store
+.thumbs.db
+
+# Quasar core related directories
+.quasar
+/dist
+/public
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Editor settings
+.vscode
