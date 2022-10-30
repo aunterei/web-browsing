@@ -104,3 +104,4 @@ typings/
 
 # Editor settings
 .vscode
+.vercel
