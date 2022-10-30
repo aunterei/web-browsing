@@ -9,23 +9,28 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/cards',
 
-        // We point it to our component
-        // where we defined our QLayout
-        component: () => import('layouts/CardsLayout.vue'),
+        component: () => import('src/layouts/PageContainerLayout.vue'),
 
-        // Now we define the sub-routes.
-        // These are getting injected into
-        // layout (from above) automatically
-        // by using <router-view> placeholder
-        // (need to specify it in layout)
         children: [
           {
             path: 'club-pale',
             component: () => import('src/pages/cards/ClubPalePage.vue')
           },
           {
-            path: 'magic',
-            component: () => import('src/pages/cards/MagicCardsPage.vue')
+            path: 'earthstone',
+            component: () => import('src/pages/cards/EarthstoneCardsPage.vue')
+          }
+        ]
+      },
+      {
+        path: '/grid',
+
+        component: () => import('src/layouts/PageContainerLayout.vue'),
+
+        children: [
+          {
+            path: 'image-gallery',
+            component: () => import('src/pages/grid/ImageGalleryPage.vue')
           }
         ]
       },

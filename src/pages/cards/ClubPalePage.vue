@@ -8,7 +8,7 @@
           This is a placeholder text. The image rights go to the bison beer
           company. Check their website by clicking the button below.
         </p>
-        <a href="https://www.bisonbeer.co.uk/">Go to website</a>
+        <a href="https://www.bisonbeer.co.uk/" target="_blank">Go to website</a>
       </div>
       <img src="~/assets/cards/test/can.png" />
     </div>

@@ -11,9 +11,9 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Quasar App </q-toolbar-title>
+        <q-toolbar-title> Web Browsing </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>Antoine Untereiner</div>
       </q-toolbar>
     </q-header>
 
@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import MenuItem from 'components/MenuItem.vue';
+import MenuItem from 'src/components/menu/MenuItem.vue';
 
 const menuItems = [
   {
@@ -49,7 +49,7 @@ const menuItems = [
   },
   {
     label: 'Cards',
-    icon: 'dashboard',
+    icon: 'contact_mail',
     pages: [
       {
         label: 'Club Pale',
@@ -58,10 +58,22 @@ const menuItems = [
         to: '/cards/club-pale',
       },
       {
-        label: 'Magic Cards',
+        label: 'Earthstone Cards',
         caption: 'Rotation animation on mouse move',
         icon: 'auto_fix_normal',
-        to: '/cards/magic',
+        to: '/cards/earthstone',
+      },
+    ],
+  },
+  {
+    label: 'Grid',
+    icon: 'dashboard',
+    pages: [
+      {
+        label: 'Image Gallery',
+        caption: 'Images with info on hover',
+        icon: 'image',
+        to: '/grid/image-gallery',
       },
     ],
   },

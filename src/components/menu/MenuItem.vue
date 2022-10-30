@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import PageItem from 'src/components/PageItem.vue';
+import PageItem from 'src/components/menu/PageItem.vue';
 
 export default defineComponent({
   name: 'MenuItem',

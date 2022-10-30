@@ -19,7 +19,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 export default defineComponent({
-  name: 'MagicCardComponent',
+  name: 'EarthstoneCardComponent',
 });
 </script>
 
@@ -27,7 +27,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import { PropType, ref, Ref } from 'vue';
-import { MagicCardInfos } from './magic-cards.model';
+import { MagicCardInfos } from '../../../models/earthstone-cards.model';
 
 /*--- Props ---*/
 
