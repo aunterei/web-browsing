@@ -1,8 +1,15 @@
 /* COMPONENT DEFINITION */
 
 <template>
-  <q-page id="background" class="row justify-center items-center">
-    <div id="container" class="row justify-center items-center">
+  <q-page id="background" class="column justify-center items-center">
+    <p class="q-mt-md" :style="{ color: 'pink' }" v-if="$q.platform.is.mobile">
+      Tap on card to reveal description
+    </p>
+    <div
+      id="container"
+      class="justify-center items-center"
+      :class="$q.platform.is.mobile ? 'q-mb-md' : 'q-my-md'"
+    >
       <ImageGalleryElementComponent
         v-for="galleryElement in galleryElements"
         :key="galleryElement.title"
@@ -31,8 +38,12 @@ import {
   galleryData,
   ImageGalleryElement,
 } from 'src/models/image-gallery-element.model';
+import { useQuasar } from 'quasar';
 
 const galleryElements: Ref<ImageGalleryElement[]> = ref(galleryData);
+const $q = useQuasar();
+
+console.log($q.platform);
 </script>
 
 /* COMPONENT STYLE */
@@ -43,8 +54,15 @@ const galleryElements: Ref<ImageGalleryElement[]> = ref(galleryData);
 }
 
 #container {
-  max-width: 80%;
-  margin: 20px 0;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 350px);
   gap: 25px;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  #container {
+    grid-template-columns: repeat(auto-fill, 300px);
+  }
 }
 </style>

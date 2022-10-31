@@ -1,6 +1,13 @@
 /* COMPONENT TEMPLATE */
 <template>
-  <div class="galleryElement" :style="{ color: galleryElement.textColor }">
+  <div
+    class="galleryElement"
+    :style="{ color: galleryElement.textColor }"
+    ref="galleryCard"
+    @mouseenter="toggleDescription(false)"
+    @mouseleave="toggleDescription(false)"
+    @click="toggleDescription(true)"
+  >
     <div class="galleryElement__description column justify-between items-start">
       <h2 class="text-weight-bold">{{ galleryElement.title }}</h2>
       <p>
@@ -12,7 +19,7 @@
     <img
       class="galleryElement__img"
       :src="galleryElement.imgSrc"
-      :alt="galleryElement.alt"
+      :alt="galleryElement.imgAlt"
     />
   </div>
 </template>
@@ -20,7 +27,8 @@
 /* COMPONENT DEFINITION */
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { useQuasar } from 'quasar';
+import { defineComponent, Ref, ref } from 'vue';
 export default defineComponent({
   name: 'ImageGalleryElementComponent',
 });
@@ -29,7 +37,7 @@ export default defineComponent({
 /* COMPONENT SETUP */
 
 <script lang="ts" setup>
-import { PropType, ref, Ref } from 'vue';
+import { PropType } from 'vue';
 import { ImageGalleryElement } from '../../models/image-gallery-element.model';
 
 /*--- Props ---*/
@@ -42,6 +50,29 @@ const props = defineProps({
 });
 
 /*--- Data ---*/
+const galleryCard: Ref<HTMLElement | null> = ref(null);
+const $q = useQuasar();
+let isDescriptionVisible = false;
+/*--- Method ---*/
+
+function toggleDescription(isMobile: boolean) {
+  if (
+    (isMobile && !$q.platform.is.mobile) ||
+    (!isMobile && $q.platform.is.mobile)
+  )
+    return;
+
+  if (galleryCard.value) {
+    if (isDescriptionVisible) {
+      galleryCard.value.classList.remove('slideIn');
+      galleryCard.value.classList.add('slideOut');
+    } else {
+      galleryCard.value.classList.add('slideIn');
+      galleryCard.value.classList.remove('slideOut');
+    }
+    isDescriptionVisible = !isDescriptionVisible;
+  }
+}
 </script>
 
 /* COMPONENT STYLE */
@@ -57,20 +88,10 @@ const props = defineProps({
     content: '';
     position: absolute;
     top: 0;
-    right: 0;
+    right: 100%;
     width: 100%;
     height: 100%;
     background-color: white;
-
-    animation: slideOut 0.5s forwards;
-    animation-delay: 0.7s;
-    -webkit-animation: slideOut 0.5s forwards;
-    -webkit-animation-delay: 0.7s;
-  }
-
-  &:hover:after {
-    animation: slideIn 0.5s forwards;
-    -webkit-animation: slideIn 0.5s forwards;
   }
 
   .galleryElement__img {
@@ -85,7 +106,7 @@ const props = defineProps({
     height: 100%;
     z-index: 200;
 
-    right: 0;
+    right: 100%;
 
     padding: 40px;
     opacity: 1;
@@ -94,18 +115,10 @@ const props = defineProps({
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
 
-    animation: textSlideOut 0.7s forwards;
-    -webkit-animation: textSlideOut 0.7s forwards;
-
     h2 {
       text-transform: uppercase;
       font-size: 3em;
     }
-  }
-
-  &:hover .galleryElement__description {
-    animation: slideIn 0.7s forwards;
-    -webkit-animation: slideIn 0.7s forwards;
   }
 
   @keyframes slideIn {
@@ -117,27 +130,55 @@ const props = defineProps({
     }
   }
 
-  @keyframes slideOut {
-    0% {
-      right: 0;
-    }
-    100% {
-      right: -100%;
-    }
-  }
-
-  @keyframes textSlideOut {
-    0% {
-      right: 0;
-    }
-    100% {
-      right: 100%;
-    }
-  }
-
   //Needed to affect v-html elements
   &::v-deep a {
     color: inherit;
+  }
+}
+
+.slideIn {
+  &:after {
+    animation: slideIn 0.5s forwards;
+    -webkit-animation: slideIn 0.5s forwards;
+  }
+
+  .galleryElement__description {
+    animation: slideIn 0.7s forwards;
+    -webkit-animation: slideIn 0.7s forwards;
+  }
+}
+
+.slideOut {
+  &:after {
+    right: 0;
+    animation: slideOut 0.5s forwards;
+    animation-delay: 0.7s;
+    -webkit-animation: slideOut 0.5s forwards;
+    -webkit-animation-delay: 0.7s;
+  }
+
+  .galleryElement__description {
+    right: 0;
+    animation: textSlideOut 0.7s forwards;
+    -webkit-animation: textSlideOut 0.7s forwards;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    right: 0;
+  }
+  100% {
+    right: -100%;
+  }
+}
+
+@keyframes textSlideOut {
+  0% {
+    right: 0;
+  }
+  100% {
+    right: 100%;
   }
 }
 
