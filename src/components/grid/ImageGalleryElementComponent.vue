@@ -53,25 +53,25 @@ const props = defineProps({
 const galleryCard: Ref<HTMLElement | null> = ref(null);
 const $q = useQuasar();
 let isDescriptionVisible = false;
+
 /*--- Method ---*/
 
 function toggleDescription(isMobile: boolean) {
   if (
+    !galleryCard.value ||
     (isMobile && !$q.platform.is.mobile) ||
     (!isMobile && $q.platform.is.mobile)
   )
     return;
 
-  if (galleryCard.value) {
-    if (isDescriptionVisible) {
-      galleryCard.value.classList.remove('slideIn');
-      galleryCard.value.classList.add('slideOut');
-    } else {
-      galleryCard.value.classList.add('slideIn');
-      galleryCard.value.classList.remove('slideOut');
-    }
-    isDescriptionVisible = !isDescriptionVisible;
+  if (isDescriptionVisible) {
+    galleryCard.value.classList.remove('slideIn');
+    galleryCard.value.classList.add('slideOut');
+  } else {
+    galleryCard.value.classList.add('slideIn');
+    galleryCard.value.classList.remove('slideOut');
   }
+  isDescriptionVisible = !isDescriptionVisible;
 }
 </script>
 
