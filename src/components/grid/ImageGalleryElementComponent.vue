@@ -131,7 +131,7 @@ function toggleDescription(isMobile: boolean) {
   }
 
   //Needed to affect v-html elements
-  &::v-deep a {
+  :deep(a) {
     color: inherit;
   }
 }

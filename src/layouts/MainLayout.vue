@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
+      <q-toolbar class="toolbar">
         <q-btn
           flat
           dense
@@ -17,21 +17,13 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="t">
       <q-list>
-        <MenuItem
-          v-for="menuItem in menuItems"
-          :key="menuItem.label"
-          :to="menuItem.to"
-          :label="menuItem.label"
-          :caption="menuItem.caption"
-          :icon="menuItem.icon"
-          :pages="menuItem.pages"
-        />
+        <MenuComponent />
       </q-list>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container id="viewContainer">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -39,58 +31,19 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import MenuItem from 'src/components/menu/MenuItem.vue';
-
-const menuItems = [
-  {
-    label: 'Homepage',
-    icon: 'home',
-    to: '/',
-  },
-  {
-    label: 'Cards',
-    icon: 'contact_mail',
-    pages: [
-      {
-        label: 'Club Pale',
-        caption: 'Product card inspired by Pepsi',
-        icon: 'sports_bar',
-        to: '/cards/club-pale',
-      },
-      {
-        label: 'Earthstone Cards',
-        caption: 'Rotation animation on mouse move',
-        icon: 'auto_fix_normal',
-        to: '/cards/earthstone',
-      },
-    ],
-  },
-  {
-    label: 'Grid',
-    icon: 'dashboard',
-    pages: [
-      {
-        label: 'Image Gallery',
-        caption: 'Images with info on hover',
-        icon: 'image',
-        to: '/grid/image-gallery',
-      },
-    ],
-  },
-];
+import MenuComponent from 'src/components/menu/MenuComponent.vue';
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    MenuItem,
+    MenuComponent,
   },
 
   setup() {
     const leftDrawerOpen = ref(false);
 
     return {
-      menuItems: menuItems,
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
@@ -99,3 +52,15 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+#viewContainer {
+  background-color: #1b1b1b;
+  color: white;
+}
+:deep(.q-drawer),
+.toolbar {
+  background-color: #242424 !important;
+  color: white;
+}
+</style>

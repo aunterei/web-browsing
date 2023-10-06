@@ -1,5 +1,5 @@
 <template>
-  <q-page id="container" class="column justify-center items-center">
+  <q-page class="column justify-center items-center">
     <p class="q-mt-md" :style="{ color: 'pink' }" v-if="$q.platform.is.mobile">
       Tap on card to reveal description
     </p>
@@ -65,10 +65,6 @@ function toggleDescription(isMobile: boolean) {
 </script>
 
 <style lang="scss" scoped>
-#container {
-  background-color: #141414;
-}
-
 .card {
   position: relative;
   width: 600px;

@@ -1,3 +1,5 @@
+/* COMPONENT TEMPLATE */
+
 <template>
   <q-item clickable tag="router-link" :to="to">
     <q-item-section v-if="icon" avatar>
@@ -6,36 +8,50 @@
 
     <q-item-section>
       <q-item-label>{{ label }}</q-item-label>
-      <q-item-label caption>{{ caption }}</q-item-label>
+      <q-item-label caption class="caption">{{ caption }}</q-item-label>
     </q-item-section>
   </q-item>
 </template>
 
+/* COMPONENT DEFINITION */
+
 <script lang="ts">
 import { defineComponent } from 'vue';
-
 export default defineComponent({
   name: 'PageItem',
-  props: {
-    label: {
-      type: String,
-      required: true,
-    },
+});
+</script>
 
-    caption: {
-      type: String,
-      default: '',
-    },
+/* COMPONENT SETUP */
 
-    to: {
-      type: String,
-      default: '#',
-    },
+<script lang="ts" setup>
+/*--- Props ---*/
 
-    icon: {
-      type: String,
-      default: '',
-    },
+const props = defineProps({
+  label: {
+    type: String,
+    required: true,
+  },
+
+  caption: {
+    type: String,
+    default: '',
+  },
+
+  to: {
+    type: String,
+    default: '#',
+  },
+
+  icon: {
+    type: String,
+    default: '',
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.caption {
+  color: white;
+}
+</style>

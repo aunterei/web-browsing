@@ -1,15 +1,16 @@
+/* COMPONENT TEMPLATE */
+
 <template>
   <q-expansion-item
     expand-separator
     :content-inset-level="0.2"
-    :icon="icon"
-    :label="label"
-    :caption="caption"
-    v-if="pages.length && !to"
+    :icon="menuItem.icon"
+    :label="menuItem.label"
+    v-if="menuItem.pages?.length && !menuItem.to"
   >
     <q-list>
       <PageItem
-        v-for="page in pages"
+        v-for="page in menuItem.pages"
         :key="page.label"
         :label="page.label"
         :caption="page.caption"
@@ -19,39 +20,39 @@
     </q-list>
   </q-expansion-item>
 
-  <PageItem v-else :label="label" :caption="caption" :icon="icon" :to="to" />
+  <PageItem
+    v-else
+    :label="menuItem.label"
+    :caption="menuItem.caption"
+    :icon="menuItem.icon"
+    :to="menuItem.to"
+  />
 </template>
 
-
+/* COMPONENT DEFINITION */
 <script lang="ts">
-import { defineComponent } from 'vue';
-import PageItem from 'src/components/menu/PageItem.vue';
+// import { defineComponent } from 'vue';
+// import PageItem from 'src/components/menu/PageItem.vue';
+// export default defineComponent({
+//   name: 'MenuItem',
+//   component: {
+//     PageItem,
+//   },
+// });
+</script>
+/* COMPONENT SETUP */
 
-export default defineComponent({
-  name: 'MenuItem',
-  props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    icon: {
-      type: String,
-      default: '',
-    },
-    caption: {
-      type: String,
-      default: '',
-    },
-    pages: {
-      type: Array,
-      default: () => [],
-    },
-    to: {
-      type: String,
-    },
-  },
-  components: {
-    PageItem,
+<script lang="ts" setup>
+import { MenuItemModel } from 'src/models/menu.model';
+import PageItem from 'src/components/menu/PageItem.vue';
+import { PropType } from 'vue';
+
+/*--- Props ---*/
+
+const props = defineProps({
+  menuItem: {
+    type: Object as PropType<MenuItemModel>,
+    required: true,
   },
 });
 </script>

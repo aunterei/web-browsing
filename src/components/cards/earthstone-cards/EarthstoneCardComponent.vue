@@ -36,6 +36,10 @@ const props = defineProps({
     type: Object as PropType<MagicCardInfos>,
     required: true,
   },
+  enableHover: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 /*--- Data ---*/
@@ -47,7 +51,7 @@ const card: Ref<HTMLElement | null> = ref(null);
 /*--- Methods ---*/
 
 function onCardMouseMove(e: MouseEvent): void {
-  if (e.target && card.value) {
+  if (e.target && card.value && props.enableHover) {
     var rect = card.value.getBoundingClientRect();
     var x = e.clientX - rect.left; //x position within the elemnt
     var y = e.clientY - rect.top; //y position within the element.
@@ -61,7 +65,7 @@ function onCardMouseMove(e: MouseEvent): void {
 }
 
 function onCardMouseLeave(): void {
-  if (card.value) {
+  if (card.value && props.enableHover) {
     card.value.style.transition =
       'all 1000ms cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s';
     card.value.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
@@ -69,7 +73,7 @@ function onCardMouseLeave(): void {
 }
 
 function onCardMouseEnter(): void {
-  if (card.value) {
+  if (card.value && props.enableHover) {
     card.value.style.transition = 'none';
   }
 }

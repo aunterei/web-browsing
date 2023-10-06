@@ -1,7 +1,7 @@
-/* COMPONENT DEFINITION */
+/* COMPONENT TEMPLATE */
 
 <template>
-  <q-page id="background" class="column justify-center items-center">
+  <q-page class="column justify-center items-center">
     <p class="q-mt-md" :style="{ color: 'pink' }" v-if="$q.platform.is.mobile">
       Tap on card to reveal description
     </p>
@@ -49,10 +49,6 @@ console.log($q.platform);
 /* COMPONENT STYLE */
 
 <style lang="scss" scoped>
-#background {
-  background-color: #141414;
-}
-
 #container {
   width: 80%;
   display: grid;

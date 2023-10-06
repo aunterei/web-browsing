@@ -14,13 +14,13 @@ const routes: RouteRecordRaw[] = [
         children: [
           {
             path: 'club-pale',
-            component: () => import('src/pages/cards/ClubPalePage.vue')
+            component: () => import('src/pages/cards/ClubPalePage.vue'),
           },
           {
             path: 'earthstone',
-            component: () => import('src/pages/cards/EarthstoneCardsPage.vue')
-          }
-        ]
+            component: () => import('src/pages/cards/EarthstoneCardsPage.vue'),
+          },
+        ],
       },
       {
         path: '/grid',
@@ -30,9 +30,21 @@ const routes: RouteRecordRaw[] = [
         children: [
           {
             path: 'image-gallery',
-            component: () => import('src/pages/grid/ImageGalleryPage.vue')
-          }
-        ]
+            component: () => import('src/pages/grid/ImageGalleryPage.vue'),
+          },
+        ],
+      },
+      {
+        path: '/forms',
+
+        component: () => import('src/layouts/PageContainerLayout.vue'),
+
+        children: [
+          {
+            path: 'sliding-form',
+            component: () => import('src/pages/forms/SlidingFormPage.vue'),
+          },
+        ],
       },
     ],
   },
