@@ -24,9 +24,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: '/grid',
-
         component: () => import('src/layouts/PageContainerLayout.vue'),
-
         children: [
           {
             path: 'image-gallery',
@@ -36,13 +34,21 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: '/forms',
-
         component: () => import('src/layouts/PageContainerLayout.vue'),
-
         children: [
           {
             path: 'sliding-form',
             component: () => import('src/pages/forms/SlidingFormPage.vue'),
+          },
+        ],
+      },
+      {
+        path: '/menus',
+        component: () => import('src/layouts/PageContainerLayout.vue'),
+        children: [
+          {
+            path: 'img-menu',
+            component: () => import('src/pages/menus/ImgMenu.vue'),
           },
         ],
       },

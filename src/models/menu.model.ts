@@ -61,4 +61,16 @@ export const menuItems: MenuItemModel[] = [
       },
     ],
   },
+  {
+    label: 'Menus',
+    icon: 'contact_mail',
+    pages: [
+      {
+        label: 'Image Menu',
+        caption: 'Menu with image animation',
+        icon: 'arrow_downward',
+        to: '/menus/img-menu',
+      },
+    ],
+  },
 ];
